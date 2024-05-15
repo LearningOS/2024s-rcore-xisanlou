@@ -65,6 +65,13 @@ impl TaskControlBlock {
         let inner = self.inner_exclusive_access();
         inner.stride > STRIDE_MAX - inner.pass
     }
+
+    /// Add stride step
+    pub fn stride_add_step(&self) {
+        let mut inner = self.inner_exclusive_access();
+        
+        inner.stride = inner.stride.wrapping_add(inner.pass);
+    }    
 }
 
 pub struct TaskControlBlockInner {

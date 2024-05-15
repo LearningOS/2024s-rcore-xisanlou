@@ -36,12 +36,21 @@ struct Stride(u64);
 
 impl PartialOrd for Stride {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Some(self.0.cmp(&other.0))
+        if self.0.wrapping_sub(other.0) > BigStride / 2 {
+            // stride overflow
+            if self.0 < other.0 {
+                Some(Ordering::Greater)
+            } else {
+                Some(Ordering::Less)
+            }
+        } else {
+            Some(self.cmp(other))
+        }
     }
 }
 
 impl PartialEq for Stride {
-    fn eq(&self, other: &Self) -> bool {
+    fn eq(&self, _other: &Self) -> bool {
         false
     }
 }

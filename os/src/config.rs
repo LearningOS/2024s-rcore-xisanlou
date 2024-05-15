@@ -27,5 +27,5 @@ pub const MEMORY_END: usize = 0x88000000;
 /// task control block stride max value.
 pub const STRIDE_MAX: u64 = core::u64::MAX;
 /// task control block stride big stride.
-pub const BIG_STRIDE: u64 = 65535;
-//pub const BIG_STRIDE: u64 = core::u64::MAX;
+//pub const BIG_STRIDE: u64 = 65535;
+pub const BIG_STRIDE: u64 = core::u64::MAX;

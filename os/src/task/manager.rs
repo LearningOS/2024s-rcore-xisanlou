@@ -36,6 +36,8 @@ impl TaskManager {
             self.push_0 = !self.push_0;
         }
 
+        task.stride_add_step();
+
         if self.push_0 {
             self.ready_queue_0.push(Reverse(task));
         } else {
